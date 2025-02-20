@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Sound Map</title>
+</head>
+
+<body>
+    <div id="map"></div> <!-- Her indlæses SVG'en -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", runProgram);
+
+        async function runProgram() {
+            // 1. Load svg map
+            let rawSvg = await fetch("kortmedpunkter.svg");
+            let svg = await rawSvg.text();
+            document.querySelector("#map").innerHTML = svg;
+
+            // 2. Find punkter
+            let Palæ = document.querySelector("#map #Palæ");
+            let Hviid = document.querySelector("#map #Hviid");
+            let Byens = document.querySelector("#map #Byens");
+            let Sommersko = document.querySelector("#map #Sommersko");
+            let BoBi = document.querySelector("#map #BoBi");
+
+            // 3. Gør punkterne synlige
+            Palæ.style.visibility = "visible";
+            Hviid.style.visibility = "visible";
+            Byens.style.visibility = "visible";
+            Sommersko.style.visibility = "visible";
+            BoBi.style.visibility = "visible";
+
+            // 4. Afspil eller stop lyd ved klik
+            const soundMap = {}; // Holder styr på lydene
+            let activeElement = null; // Holder styr på det aktive punkt
+            let activeSound = null; // Holder styr på den aktive lyd
+
+            function toggleSound(soundFile, id, element) {
+                // Hvis lyden for punktet ikke er oprettet endnu, opret den
+                if (!soundMap[id]) {
+                    soundMap[id] = new Audio(soundFile);
+                }
+
+                let sound = soundMap[id];
+
+                // Stop den aktuelle lyd og nulstil farve, hvis et andet punkt er aktivt
+                if (activeElement && activeElement !== element) {
+                    activeElement.setAttribute("fill", "#ea2d00"); // Nulstil farven
+                    if (activeSound) {
+                        activeSound.pause();
+                        activeSound.currentTime = 0; // Nulstil lyd
+                    }
+                }
+
+                // Håndtering af lyden for det nye punkt
+                if (sound.paused) {
+                    sound.play();
+                } else {
+                    sound.pause();
+                    sound.currentTime = 0; // Nulstil, hvis punktet klikkes igen
+                }
+
+                // Opdater aktiv lyd og aktivt element
+                activeElement = element;
+                activeSound = sound;
+
+                // Skift farve på det nye punkt
+                element.setAttribute("fill", "#00000");
+            }
+
+            // Tilføj klik-events med farveskift og lydhåndtering
+            Palæ.addEventListener("click", () => toggleSound("palæ_bar.mp3", "Palæ", Palæ));
+            Hviid.addEventListener("click", () => toggleSound("hviid_vinstue.mp3", "Hviid", Hviid));
+            Byens.addEventListener("click", () => toggleSound("byens_kro.mp3", "Byens", Byens));
+            Sommersko.addEventListener("click", () => toggleSound("sommersko.mp3", "Sommersko", Sommersko));
+            BoBi.addEventListener("click", () => toggleSound("bobi.mp3", "BoBi", BoBi));
+        }
+    </script>
+</body>
+
+</html>

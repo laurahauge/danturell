@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svgmap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1235.4 804">
+  <!-- Generator: Adobe Illustrator 29.3.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 146)  -->
+  <g id="kort">
+    <image width="552" height="364" transform="scale(2.2 2.2)" xlink:href="/svgkort.png" isolation="isolate"/>
+  </g>
+  <g id="punkter">
+    <circle id="BoBi" cx="362.6" cy="390.5" r="33.1" fill="#ea2d00" stroke="#000" stroke-miterlimit="10"/>
+    <circle id="Byens" cx="401.3" cy="332.3" r="33.1" fill="#ea2d00" stroke="#000" stroke-miterlimit="10"/>
+    <circle id="Sommersko" cx="937.1" cy="266.1" r="33.1" fill="#ea2d00" stroke="#000" stroke-miterlimit="10"/>
+    <circle id="Palæ" cx="708" cy="377.9" r="33.1" fill="#ea2d00" stroke="#000" stroke-miterlimit="10"/>
+    <circle id="Hviid" cx="806.7" cy="565.9" r="33.1" fill="#ea2d00" stroke="#000" stroke-miterlimit="10"/>
+  </g>
+</svg>
